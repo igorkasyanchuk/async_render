@@ -1,5 +1,7 @@
 # async_render in Ruby on Rails 🚀
 
+[![RailsJazz](https://github.com/igorkasyanchuk/rails_time_travel/blob/main/docs/my_other.svg?raw=true)](https://www.railsjazz.com)
+
 ![AsyncRender Logo](docs/idea.gif)
 
 A Rails gem that enables asynchronous view rendering with warmup capabilities and in-memory memoization to significantly improve your application's performance.
