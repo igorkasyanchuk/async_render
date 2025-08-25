@@ -11,6 +11,7 @@ On my pet project and my benchmark, I've seen 5-15% improvement in response time
 - you have heavy partials
 - you have partials, with calculations inside, that can be done in background
 - your partials has none or a few dependencies on locals
+- you have 2+ partials with rendering time more than 100ms
 - you have HTML request format (see `Limitations` section)
 - you are curious about performance :)
 
@@ -19,16 +20,27 @@ On my pet project and my benchmark, I've seen 5-15% improvement in response time
 ![AsyncRender Logo](docs/idea.png)
 
 ### 🔄 Async Rendering
+
 Render multiple view partials asynchronously in background threads, reducing overall page load time by executing independent renders concurrently.
 
+Use cases:
+- heavy partials, maybe with calculations inside
+- 2+ partials with rendering time more than 100ms
+
 ### 🔥 Warmup Rendering
+
 Pre-render partials in your controller actions before the main view is processed. This allows expensive computations to start early and be ready when needed. This must be used in combination with async rendering.
 
+Use cases:
+- you are sure that some partials will be rendered
+
 ### 💾 Memoized Rendering
+
 Cache rendered partials in memory across requests within the same Ruby process, eliminating redundant rendering of static or rarely-changing content. Warning: do not use it for large amount of content, it will eat up your memory.
 
-### ⚡ Smart Thread Pool Management
-Automatically configures thread pool size based on your database connection pool and Rails configuration to prevent resource contention.
+Use cases:
+- you have static or rarely-changing content (like google analytics, modal, etc)
+- it's okay to cache it in memory, and it will be reset after next deployment
 
 ## 📦 Installation
 
@@ -160,6 +172,7 @@ For content that rarely changes, use memoized rendering to cache results in memo
 - if you use "Current" attributes, you need to pass them as locals, or pass as state to render (see `dump_state_proc` and `restore_state_proc` in the initializer)
 - warmup rendering under the hood uses simply before_action, so you need to prepare data in the controller action, not in the view.
 - for now only HTML request format is supported, but I'm working on it.
+- it will mess up your logs, because some rendering may happen after logs like "Completed 200 OK in 1761ms".
 
 ### ✅ Do
 
@@ -174,6 +187,18 @@ For content that rarely changes, use memoized rendering to cache results in memo
 - Share mutable state between parallel renders
 - Rely on request-specific data without proper state management
 - Use excessive async rendering that could exhaust database connections
+
+## Testing in Production
+
+For example you can disable async rendering:
+
+```ruby
+class ApplicationController < ActionController::Base
+  before_action do
+    AsyncRender.enabled = params[:skip_async].blank?
+  end
+end
+```
 
 ## Performance Considerations
 
