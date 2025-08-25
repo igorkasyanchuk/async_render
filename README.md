@@ -75,10 +75,10 @@ The initializer file allows you to configure AsyncRender:
 ```ruby
 AsyncRender.configure do |config|
   # Enable/disable async rendering (default: true)
-  config.enabled = Rails.env.production?
+  # config.enabled = Rails.env.production?
 
   # Timeout for async operations in seconds (default: 10)
-  config.timeout = 10
+  # config.timeout = 10
 
   # Custom thread pool executor (optional)
   # config.executor = Concurrent::FixedThreadPool.new(10)
