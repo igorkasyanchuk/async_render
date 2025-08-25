@@ -1,0 +1,40 @@
+<ul>
+  <li>
+    <a href="/" class="btn btn-ghost">
+      <span>Home</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="/about" class="btn btn-ghost">
+      <span>About</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="/about" class="btn btn-ghost">
+      <span>Explore <%= User.count %> user(s)</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="/contact" class="btn btn-ghost">
+      <span>Contact</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="/blog" class="btn btn-ghost">
+      <span>Blog</span>
+    </a>
+  </li>
+</ul>
+
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Report</h2>
+    <p class="card-text">
+      <%= Report.new(User.last).generate.join(", ") %>
+    </p>
+  </div>
+</div>

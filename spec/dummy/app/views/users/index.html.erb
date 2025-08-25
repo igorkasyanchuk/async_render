@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Users" %>
+
+<h1>Users - <%= SalesReport.new.call %></h1>
+
+<%= link_to "New user", new_user_path, class: "btn btn-primary" %>
+
+<%= render "users/list", { users: @users } %>
+
+<%= paginate @users %>

@@ -1,0 +1,28 @@
+===============================================================================
+
+AsyncRender has been successfully installed! 🎉
+
+Next steps:
+
+1. Review the configuration in config/initializers/async_render.rb
+   and adjust settings according to your needs.
+
+2. Include the controller concern in your ApplicationController:
+
+   class ApplicationController < ActionController::Base
+     include AsyncRender::Controller
+   end
+
+3. Start using parallel rendering in your views:
+
+   <%= async_render 'expensive_partial', locals: { user: current_user } %>
+
+4. For more advanced usage, check out:
+   - Warmup rendering for pre-loading partials
+   - Memoized rendering for caching rendered content
+   - Custom thread pool configuration
+
+See the full documentation at:
+https://github.com/igorkasyanchuk/async_render
+
+===============================================================================

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Async" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <!-- head -->
+    <%= memoized_render "shared/head" %>
+    <!-- end head -->
+  </head>
+
+  <body>
+    <!-- header -->
+    <%= async_render "shared/header", { numbers: @numbers } %>
+    <!-- end header -->
+
+    <div class="flex">
+      <div class="w-1/4">
+        <%= async_render "shared/sidebar" %>
+      </div>
+      <div class="w-3/4">
+        <!-- body -->
+        <%= yield %>
+        <!-- end body -->
+      </div>
+    </div>
+    <!-- footer -->
+    <%= async_render "shared/footer", { numbers: @numbers } %>
+    <%= memoized_render "shared/modal" %>
+    <%= memoized_render "shared/ga" %>
+    <!-- end footer -->
+    Users: <%= User.count %>
+  </body>
+</html>
