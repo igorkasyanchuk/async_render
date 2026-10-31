@@ -1,8 +1,15 @@
 # async_render in Ruby on Rails 🚀
 
-[![RailsJazz](https://github.com/igorkasyanchuk/rails_time_travel/blob/main/docs/my_other.svg?raw=true)](https://www.railsjazz.com)
+[![My other gems](https://github.com/igorkasyanchuk/rails_time_travel/blob/main/docs/my_other.svg?raw=true)](https://www.igorkasyanchuk.com/)
 
 ![AsyncRender Logo](docs/idea.gif)
+
+<a href="https://igorkasyanchuk.com/apps?ref=async_render">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://igorkasyanchuk.com/versions/v1/banner-dark.svg">
+    <img src="https://igorkasyanchuk.com/versions/v1/banner-light.svg" width="720" alt="More tools from the author: Laki, DiffNotes and more. See all projects at igorkasyanchuk.com/apps">
+  </picture>
+</a>
 
 A Rails gem that enables asynchronous view rendering with warmup capabilities and in-memory memoization to significantly improve your application's performance.
 
